@@ -32,7 +32,7 @@ namespace ZstdNet
 			if(disposed)
 				return;
 
-			ExternMethods.ZSTD_freeDCtx(dctx);
+			dctx.Close();
 
 			disposed = true;
 		}
@@ -121,6 +121,6 @@ namespace ZstdNet
 
 		public readonly DecompressionOptions Options;
 
-		private readonly IntPtr dctx;
+		private readonly ZStdDecompressionHandle dctx;
 	}
 }

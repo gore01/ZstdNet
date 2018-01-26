@@ -38,6 +38,14 @@ namespace ZstdNet
 				throw new ZstdException("Failed to create a structure");
 			return returnValue;
 		}
+
+		public static THandle EnsureZstdSuccess<THandle>(this THandle returnValue) where THandle : SafeHandle {
+			if (returnValue == null)
+				throw new ArgumentNullException(nameof(returnValue));
+			if (returnValue.IsInvalid)
+				throw new ZstdException("Failed to create a structure");
+			return returnValue;
+		}
 	}
 
 	public class ZstdException : Exception
